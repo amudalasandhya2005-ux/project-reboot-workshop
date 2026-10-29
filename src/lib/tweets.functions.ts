@@ -56,7 +56,7 @@ ${note}`;
 
 function rateLimit() {
   const ip = (getRequestHeader("x-forwarded-for") ?? getRequestHeader("cf-connecting-ip") ?? "unknown")
-    .split(",")[0]
+    .split(",")[0]!
     .trim();
   const now = Date.now();
   const list = (hits.get(ip) ?? []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
@@ -109,7 +109,7 @@ export const generateBrandTweets = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => briefSchema.parse(d))
   .handler(async ({ data }): Promise<BrandTweetResult> => {
     rateLimit();
-    const apiKey = process.env.GOOGLE_API_KEY?.trim();
+    const apiKey = process.env["GOOGLE_API_KEY"]?.trim();
     if (!apiKey) throw new Error("Gemini is not configured yet. Add the GOOGLE_API_KEY secret.");
     for (const correction of [false, true]) {
       try {
