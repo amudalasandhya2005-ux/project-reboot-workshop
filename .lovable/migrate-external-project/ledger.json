@@ -1,0 +1,7 @@
+[
+ {"capability":"code (brand tweet generator UI)","source":"Replit React+Vite","outcome":"migrate","status":"done","next_action":"none"},
+ {"capability":"AI generation (Google Gemini gemini-3.5-flash-lite)","source":"FastAPI /api/tweets/generate","outcome":"preserve provider via server function","status":"pending","next_action":"add GOOGLE_API_KEY secret, then verify"},
+ {"capability":"rate limit 12/min per IP","source":"FastAPI in-memory","outcome":"migrate (per-instance memory)","status":"done","next_action":"none"},
+ {"capability":"database / records / auth","source":"none (drizzle template unused)","outcome":"absent","status":"verified","next_action":"none"},
+ {"capability":"public endpoints / webhooks / schedules","source":"only /api/healthz","outcome":"replaced by in-app status","status":"done","next_action":"none"}
+]
