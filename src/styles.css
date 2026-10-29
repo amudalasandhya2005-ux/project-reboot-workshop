@@ -362,3 +362,23 @@ textarea.control.objective { min-height:84px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
 }
+
+/* Polish: post cards & voice summary */
+.tweet-number { display:inline-grid; place-items:center; width:34px; height:34px; border-radius:10px; background:hsl(var(--bv-coral) / .1); border:1px solid hsl(var(--bv-coral) / .25); color:hsl(var(--bv-coral-deep)); font:600 12px/1 var(--app-font-mono); }
+.tweet-card { position:relative; overflow:hidden; }
+.tweet-card::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:hsl(var(--bv-coral)); opacity:0; transition:opacity .2s; }
+.tweet-card:hover::before { opacity:1; }
+.char-wrap { display:flex; align-items:center; gap:8px; }
+.char-meter { width:64px; height:4px; border-radius:4px; background:hsl(var(--bv-line)); overflow:hidden; }
+.char-meter > i { display:block; height:100%; border-radius:4px; background:hsl(var(--bv-green)); transition:width .25s var(--bv-ease); }
+.char-meter.near > i { background:hsl(39 80% 50%); }
+.char-meter.over > i { background:hsl(var(--destructive)); }
+.style-tally { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.summary-list { counter-reset:vs; }
+.summary-list li { counter-increment:vs; padding-left:30px; }
+.summary-list li::before { content:counter(vs, decimal-leading-zero); width:auto; height:auto; top:.15em; background:none; color:hsl(var(--bv-coral)); font:500 11px/1.6 var(--app-font-mono); }
+@media (max-width: 560px) {
+  .tweet-number { width:30px; height:30px; }
+  .tweet-actions { width:100%; }
+  .tweet-actions > button { flex:1; justify-content:center; }
+}
