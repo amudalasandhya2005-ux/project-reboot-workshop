@@ -206,9 +206,20 @@
 .topbar { position:sticky; top:0; z-index:30; border-bottom:1px solid hsl(var(--bv-line)); background:hsl(var(--bv-cream) / .82); backdrop-filter:saturate(1.4) blur(12px); }
 .topbar-inner { max-width:1280px; margin:0 auto; height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 clamp(16px,4vw,40px); }
 .brand-lockup { display:flex; align-items:center; gap:10px; color:hsl(var(--bv-navy)); text-decoration:none; border-radius:var(--bv-r-sm); }
-.brand-mark { position:relative; display:grid; place-items:center; width:32px; height:32px; border-radius:9px; background:hsl(var(--bv-navy)); color:hsl(var(--bv-paper)); font:800 17px/1 var(--app-font-serif); letter-spacing:-.08em; box-shadow:inset 0 -2px 0 hsl(0 0% 0% / .2); }
-.brand-mark::after { content:""; position:absolute; right:-3px; bottom:-3px; width:10px; height:10px; border-radius:50%; background:hsl(var(--bv-coral)); border:2px solid hsl(var(--bv-cream)); }
-.brand-name { font:800 16px/1 var(--app-font-serif); letter-spacing:-.04em; }
+.bv-logo { display:block; overflow:visible; transition:transform .35s var(--bv-ease); }
+.bv-logo-bubble { fill:hsl(var(--bv-navy)); transition:fill .3s var(--bv-ease); }
+.bv-logo-bar { fill:hsl(var(--bv-paper)); transform-box:fill-box; transform-origin:center; }
+.bv-logo-dot { fill:hsl(var(--bv-coral)); transform-box:fill-box; transform-origin:center; }
+.brand-lockup:hover .bv-logo, .brand-lockup:focus-visible .bv-logo { transform:rotate(-4deg) scale(1.06); }
+.brand-lockup:hover .bv-logo-bar, .brand-lockup:focus-visible .bv-logo-bar { animation:bv-wave .9s ease-in-out infinite; }
+.brand-lockup:hover .b2, .brand-lockup:focus-visible .b2 { animation-delay:.15s; }
+.brand-lockup:hover .b3, .brand-lockup:focus-visible .b3 { animation-delay:.3s; }
+.brand-lockup:hover .bv-logo-dot, .brand-lockup:focus-visible .bv-logo-dot { animation:bv-blip .9s ease-in-out infinite; }
+@keyframes bv-wave { 0%,100% { transform:scaleY(1); } 50% { transform:scaleY(.45); } }
+@keyframes bv-blip { 0%,100% { transform:scale(1); } 50% { transform:scale(1.35); } }
+.brand-name { font:800 17px/1 var(--app-font-serif); letter-spacing:-.04em; }
+.brand-name b { color:hsl(var(--bv-coral)); font-weight:800; }
+@media (prefers-reduced-motion: reduce) { .brand-lockup:hover .bv-logo, .brand-lockup:hover .bv-logo-bar, .brand-lockup:hover .bv-logo-dot { animation:none; transform:none; } }
 .topbar-note { display:inline-flex; align-items:center; gap:8px; padding:7px 12px; border:1px solid hsl(var(--bv-line)); border-radius:999px; background:hsl(var(--bv-paper)); color:hsl(var(--bv-ink-2)); font:500 10.5px/1 var(--app-font-mono); letter-spacing:.09em; text-transform:uppercase; }
 .health-dot { position:relative; width:7px; height:7px; border-radius:50%; background:hsl(var(--bv-green)); }
 .health-dot::after { content:""; position:absolute; inset:-3px; border-radius:50%; background:hsl(var(--bv-green) / .35); animation:bv-pulse 2.4s ease-out infinite; }

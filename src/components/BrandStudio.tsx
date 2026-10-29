@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 import { generateBrandTweets } from '@/lib/tweets.functions';
 import type { BrandBriefInput, BrandTweetResult, BrandTweetStyle } from '@/lib/tweets.schema';
 import { ArrowRight, Check, ClipboardList, Copy, Pencil, RefreshCw, Sparkles, X } from 'lucide-react';
+import { BrandLogo } from '@/components/BrandLogo';
 
 type BriefErrors = Partial<Record<keyof BrandBriefInput, string>>;
 
@@ -189,8 +190,8 @@ export function BrandStudio() {
       <header className="topbar">
         <div className="topbar-inner">
           <a className="brand-lockup" href="/" aria-label="Brand voice home" data-testid="link-home">
-            <span className="brand-mark" aria-hidden="true">b.</span>
-            <span className="brand-name">brand voice</span>
+            <BrandLogo />
+            <span className="brand-name">brand voice<b>.</b></span>
           </a>
           <div className="topbar-note" data-testid="status-api" aria-label="Studio status">
             <span className={`health-dot${health.isError ? ' offline' : ''}`} aria-hidden="true" />
