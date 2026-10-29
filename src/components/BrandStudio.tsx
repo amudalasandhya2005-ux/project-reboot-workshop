@@ -167,7 +167,7 @@ export function BrandStudio() {
 
   const startEdit = (index: number) => {
     setEditingIndex(index);
-    setDraft(tweets[index].text);
+    setDraft(tweets[index]?.text ?? '');
   };
 
   const saveEdit = () => {
