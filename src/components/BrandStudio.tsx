@@ -328,8 +328,14 @@ export function BrandStudio() {
                 <div className="posts-bar">
                   <span className="posts-title">Generated posts</span>
                   <button type="button" className="ghost-button" data-testid="button-copy-all" onClick={() => void copyAll()}>
-                    <ClipboardList aria-hidden="true" /> Copy all
+                    <ClipboardList aria-hidden="true" /> Copy all {tweets.length}
                   </button>
+                </div>
+                <div className="style-tally" aria-label="Posts by type">
+                  {(Object.keys(styleLabels) as BrandTweetStyle[]).map((st) => {
+                    const n = tweets.filter((t) => t.style === st).length;
+                    return n ? <span key={st} className={`style-pill ${st}`}>{styleLabels[st]} · {n}</span> : null;
+                  })}
                 </div>
                 <div className="tweet-list" data-testid="list-tweets">
                   {tweets.map((tweet, index) => {
@@ -350,7 +356,10 @@ export function BrandStudio() {
                             <p className="tweet-text" data-testid={`text-tweet-${index + 1}`}>{tweet.text}</p>
                           )}
                           <div className="tweet-foot">
-                            <span className={`char-count${len > TWEET_LIMIT ? ' over' : ''}`}>{len} / {TWEET_LIMIT}</span>
+                            <span className="char-wrap">
+                              <span className={`char-meter${len > TWEET_LIMIT ? ' over' : len > TWEET_LIMIT * 0.85 ? ' near' : ''}`} aria-hidden="true"><i style={{ width: `${Math.min(100, (len / TWEET_LIMIT) * 100)}%` }} /></span>
+                              <span className={`char-count${len > TWEET_LIMIT ? ' over' : ''}`}>{len} / {TWEET_LIMIT}</span>
+                            </span>
                             <div className="tweet-actions">
                               {editing ? (
                                 <>
