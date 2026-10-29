@@ -328,7 +328,7 @@ export function BrandStudio() {
                 <div className="posts-bar">
                   <span className="posts-title">Generated posts</span>
                   <button type="button" className="ghost-button" data-testid="button-copy-all" onClick={() => void copyAll()}>
-                    <ClipboardList aria-hidden="true" /> Copy all 10
+                    <ClipboardList aria-hidden="true" /> Copy all {tweets.length}
                   </button>
                 </div>
                 <div className="style-tally" aria-label="Posts by type">
